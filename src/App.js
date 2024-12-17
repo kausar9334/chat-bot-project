@@ -94,7 +94,23 @@ const App = () => {
     }
   }
   return (
+    
     <div className="app">
+      <div>
+        <h1>Hii, I am your chatbot</h1>
+      </div>
+         <div className="search-result">
+          {chatHistory.map((chatItem, _index) => <div key={_index}>
+            <p className="answer">
+              <span style={{ color: '#00ffa2', fontWeight: 600 }}>
+                {chatItem.role.charAt(0).toUpperCase() + chatItem.role.slice(1)} :
+                </span>
+                              {/* Render markdown content here */}
+              <ReactMarkdown>{chatItem.parts}</ReactMarkdown>
+                </p>
+          </div>)}
+          
+        </div>
         <p>What do you want to know?
         <button className="surprise" onClick={surprise} disabled={!chatHistory}>Surprise me</button>
         </p>
@@ -109,18 +125,7 @@ const App = () => {
           {error && <button onClick={clear}>Clear</button>}
         </div>
         {error && <p>{error}</p>}
-        <div className="search-result">
-          {chatHistory.map((chatItem, _index) => <div key={_index}>
-            <p className="answer">
-              <span style={{ color: '#00ffa2', fontWeight: 600 }}>
-                {chatItem.role.charAt(0).toUpperCase() + chatItem.role.slice(1)} :
-                </span>
-                              {/* Render markdown content here */}
-              <ReactMarkdown>{chatItem.parts}</ReactMarkdown>
-                </p>
-          </div>)}
-          
-        </div>
+       
 
     </div>
   );
